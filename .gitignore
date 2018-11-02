@@ -4,3 +4,4 @@ shop/migrations
 shop/__pycache__
 game/__pycache__
 accounts/__pycache__
+geckodriver.log
