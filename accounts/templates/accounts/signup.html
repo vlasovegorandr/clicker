@@ -1,0 +1,18 @@
+{% extends 'accounts/base_layout.html' %}
+
+{% block content %}
+    <div id="signup">
+        <div>
+        <dl>
+            <dt><h4>Become a player</h4></dt>
+            <dd>
+                <form name="signup-form" action="{% url 'accounts:signup' %}" method="post">
+                    {{ signup_form }}
+                    {% csrf_token %}
+                    <input name="submit-signup" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" value="Signup" />
+                </form>
+            </dd>
+        </dl>
+        </div>
+    </div>
+{% endblock %}

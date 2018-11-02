@@ -1,0 +1,48 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <dl>
+        <div id="play-the-game" class="menu-option">
+            <dt><form action="{% url 'game:playscreen' %}" method="post">
+                {% csrf_token %}
+                {% if request.user.id is not None %}
+                <input type="hidden" name="user-id" value="{{ request.user.id }}" />
+                {% endif %}
+                <button id="start-playing" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Play the game!</button>
+            </form></dt>
+            <dd>How to play:
+                <ol><li>Click the button to earn points</li>
+                    <li>See 1</li></ol></dd>
+        </div><br>
+        {% if user.is_authenticated %}
+        <div id="visit-the-shop" class="menu-option">
+            <dt><form action="{% url 'shop:itemlist' %}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Visit the shop</button>
+            </form></dt>
+            <dd>Change the look of the click button and its background</dd>
+        </div><br>
+        <div id="leaderboards" class="menu-option">
+            <dt><form action="{% url 'accounts:leaderboards' %}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Leaderboards</button>
+            </form></dt>
+            <dd>See how you're doing compared to others!</dd>
+        </div><br>
+        {% else %}
+        <div class="menu-option">
+            <dd> Joining the (currently non-existing) community of clickers<br>
+                allows you to:<br>
+                <ul>
+                    <li>Save your progress</li>
+                    <li>Change the look of the game</li>
+                    <li>See the leaderboards</li>
+                </ul>
+            </dd><br>
+        </div>
+        {% endif %}
+        <div id="about" class="menu-option">
+            <dt><form action="{% url 'about' %}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">About us</button>
+            </form></dt>
+        </div>
+    </dl>
+{% endblock %}

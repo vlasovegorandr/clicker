@@ -1,0 +1,38 @@
+{% extends 'game/base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div id="game">
+    <div id="go-to-main-menu">
+            <form class="accounts" action="{% url 'main_menu' %}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Main Menu</button>
+            </form>
+    </div>
+    {% if user.is_authenticated %}
+        <div id="playscreen" style="background-image: url({% get_media_prefix %}{{ player.equipped_background.bkg_image }}); background-size: cover;">
+            <p>
+                <form id="click-button" action="{% url 'game:playscreen' %}" method="post">
+                    {% csrf_token %}
+                    <input type="image" src="{% get_media_prefix %}{{ player.equipped_button.btn_image }}" value="Click!"/>
+                    <input type="hidden" name="add-click" value="{{ var }}"/>
+                    <input type="hidden" name="user-id" value="{{ request.user.id }}" />
+                </form>
+            </p>
+            <p>Playing as {{ player.name }}</p>
+            <p>You've clicked <b>{{ player.total_clicks }}</b> times</p>
+        </div>
+    {% else %}
+        <script>
+            var total_clicks = 0;
+
+            function add_click() {
+                total_clicks++;
+                document.querySelector('#clicks').innerHTML = total_clicks;
+            }
+
+        </script>
+        <p><input type="image" src="{% static 'shop/default.png' %}" id="add-click-unauth" value="Click!" onclick="add_click();" /></p>
+        <p>You've clicked <b id="clicks">0</b> times</p>
+    {% endif %}
+</div>
+{% endblock %}

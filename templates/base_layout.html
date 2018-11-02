@@ -1,0 +1,51 @@
+{% load static  from staticfiles %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Main menu</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <div id="header">
+            <h1><a href="{% url 'home' %}">clicker</a></h1>
+        </div>
+        <div id="main-menu">
+        <nav>
+            <ul>
+                <li>
+                    <form class="accounts" id="go-to-main-menu" action="{% url 'main_menu' %}">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Main Menu</button>
+                    </form>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <form class="accounts" id="logout-button" action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Logout</button>
+                        </form>
+                    </li>
+                    <p>Logged in as <span id="username">{{ request.user.username }}</span></p>
+                {% else %}
+                    <li>
+                        <form class="accounts" id="login-button" action="{% url 'accounts:login' %}" method="post">
+                            {% csrf_token %}
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Login</button>
+                        </form>
+                    </li>
+                    <li>
+                        <form class="accounts" id="signup-button" action="{% url 'accounts:signup' %}" method="post">
+                            {% csrf_token %}
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Signup</button>
+                        </form>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

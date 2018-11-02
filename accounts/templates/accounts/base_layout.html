@@ -1,0 +1,17 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Accounts</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="{% static 'accounts/styles.css' %}">
+    </head>
+    <body>
+        <div id="header">
+            <h1><a href="{% url 'home' %}">clicker</a></h1>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

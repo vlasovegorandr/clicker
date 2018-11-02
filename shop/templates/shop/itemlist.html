@@ -1,0 +1,72 @@
+{% extends 'shop/base_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div id="shop">
+    <div id="items">
+        <div id="go-to-main-menu">
+            <form class="accounts" action="{% url 'main_menu' %}">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Main Menu</button>
+            </form>
+        </div>
+        <p><h4>Unlock more items by playing the game</h4></p>
+        <p><h4>As {{ player.name }} you've clicked {{ player.total_clicks }} times</h4></p>
+        <div id="buttons" class="item-class">
+            <p>Available buttons</p><br>
+            {% for item in button_list %}
+            {% if player.total_clicks >= item.btn_price %}
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"
+                     style="background: url({% get_media_prefix %}{{ item.btn_image }});
+                       background-repeat: no-repeat;
+                       background-size: 30%;
+                       background-position: 80%">
+                    <!-- can't use template tags in css files, moved background style here -->
+                    <h2 class="mdl-card__title-text">{{ item.btn_name }}</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Unlocked for reaching {{ item.btn_price }} clicks
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <form method="post" action="{% url 'shop:itemlist' %}">
+                        {% csrf_token %}
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Apply</button>
+                        <input name="apply-button" type="hidden" value="{{ item.id }}">
+                    </form>
+                    </a>
+                </div>
+            </div>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div id="backgrounds" class="item-class">
+            <p>Available backgrounds</p><br>
+            {% for item in background_list %}
+            {% if player.total_clicks >= item.bkg_price %}
+            <div class="demo-card-square mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title mdl-card--expand"
+                     style="background: url({% get_media_prefix %}{{ item.bkg_image }});
+                       background-repeat: no-repeat;
+                       background-size: 100%;">
+                    <!-- can't use template tags in css files, moved background style here -->
+                    <h2 class="mdl-card__title-text">{{ item.bkg_name }}</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Unlocked for reaching {{ item.bkg_price }} clicks
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <form method="post" action="{% url 'shop:itemlist' %}">
+                        {% csrf_token %}
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Apply</button>
+                        <input name="apply-background" type="hidden" value="{{ item.id }}">
+                    </form>
+                </div>
+            </div>
+            <br>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

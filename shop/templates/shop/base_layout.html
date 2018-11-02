@@ -1,0 +1,20 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Bells and whistles</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'shop/styles.css' %}">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1><a href="{% url 'home' %}">clicker</a></h1>
+    </div>
+    <div id="shop">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

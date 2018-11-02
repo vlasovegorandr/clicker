@@ -1,0 +1,21 @@
+{% extends 'accounts/base_layout.html' %}
+
+{% block content %}
+    <div id="login">
+        <div>
+        <dl>
+            <dt><h4>Login</h4></dt>
+            <dd>
+                <form name="login-form" action="{% url 'accounts:login' %}" method="post">
+                    {{ login_form }}
+                    {% csrf_token %}
+                    {% if request.GET.next %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}" />
+                    {% endif %}
+                    <p><input name="submit-login" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" value="Log me in!" /></p>
+                </form>
+            </dd>
+        </dl>
+        </div>
+    </div>
+{% endblock %}
