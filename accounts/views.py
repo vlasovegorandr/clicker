@@ -55,10 +55,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if 'next' in request.POST:
-                return redirect(request.POST.get('next'))
-            else:
-                return redirect('main_menu')
+            return redirect('main_menu')
 
     else:
         form = AuthenticationForm()
