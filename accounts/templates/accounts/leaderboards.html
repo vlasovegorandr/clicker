@@ -4,31 +4,34 @@
 {% block content %}
 <div id="leaderboards">
     <div>
-    <p><h4>Leaderboards</h4></p>
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-        <tr>
-            <th class="mdl-data-table__cell--non-numeric">Player</th>
-            <th class="mdl-data-table__cell--non-numeric">Score</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if list_length == 0 %}
-        <tr>
-            <td>empty</h4></td>
-            <td>empty</td>
-        </tr>
-        {% else %}
-        {% for player in list_of_players %}
-        <tr>
-            <td>{{ player.name }}</td>
-            <td>{{ player.total_clicks }}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-        </tbody>
-    </table>
-    <br>
+        <form class="accounts" action="{% url 'main_menu' %}">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Main Menu</button>
+        </form>
+        <p><h4>Leaderboards</h4></p>
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Player</th>
+                <th class="mdl-data-table__cell--non-numeric">Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if list_length == 0 %}
+            <tr>
+                <td>empty</h4></td>
+                <td>empty</td>
+            </tr>
+            {% else %}
+            {% for player in list_of_players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.total_clicks }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+        <br>
     </div>
 </div>
 

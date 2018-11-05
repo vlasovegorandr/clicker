@@ -20,26 +20,26 @@
                     </form>
                 </li>
                 {% if user.is_authenticated %}
-                    <li>
-                        <form class="accounts" id="logout-button" action="{% url 'accounts:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Logout</button>
-                        </form>
-                    </li>
-                    <p>Logged in as <span id="username">{{ request.user.username }}</span></p>
+                <li>
+                    <form class="accounts" id="logout-button" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Logout</button>
+                    </form>
+                </li>
+                <p>Logged in as <span id="username">{{ request.user.username }}</span></p>
                 {% else %}
-                    <li>
-                        <form class="accounts" id="login-button" action="{% url 'accounts:login' %}" method="post">
-                            {% csrf_token %}
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Login</button>
-                        </form>
-                    </li>
-                    <li>
-                        <form class="accounts" id="signup-button" action="{% url 'accounts:signup' %}" method="post">
-                            {% csrf_token %}
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Signup</button>
-                        </form>
-                    </li>
+                <li>
+                    <form class="accounts" id="login-button" action="{% url 'accounts:login' %}" method="post">
+                        {% csrf_token %}
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Login</button>
+                    </form>
+                </li>
+                <li>
+                    <form class="accounts" id="signup-button" action="{% url 'accounts:signup' %}" method="post">
+                        {% csrf_token %}
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">Signup</button>
+                    </form>
+                </li>
                 {% endif %}
 
             </ul>
