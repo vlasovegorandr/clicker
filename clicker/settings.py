@@ -25,7 +25,7 @@ SECRET_KEY = 'gef8e=g7m2v9nde^#*n#pb*v^_0q4yfo*sb%7(w+#l88x9crdz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://vlasovegorandr.pythonanywhere.com']
 
 
 # Application definition
