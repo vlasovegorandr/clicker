@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import ClickButton, Background
+from .models import ClickButtonSkin, Background, ClickMultiplier
 
-admin.site.register(ClickButton)
+admin.site.register(ClickButtonSkin)
 admin.site.register(Background)
+admin.site.register(ClickMultiplier)
 
 # Register your models here.

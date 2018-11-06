@@ -31,17 +31,14 @@ h4{
 #shop #items{
     background-color: white;
     display: inline-block;
-    margin-left: 25%;
+    margin-left: 15%;
     border-radius: 1em;
-    width: 50%;
+    width: 70%;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 #items .item-class{
     vertical-align: top;
-}
-
-.item-class {
     display: inline-block;
     padding: 30px;
 }
