@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.views.generic import ListView
 from accounts.models import PlayerInventory
-from shop.models import ClickButton, Background
+from shop.models import ClickButtonSkin, Background, ClickMultiplier
 from .forms import CreatePlayerInventoryInstanceForm
 
 
@@ -11,6 +11,9 @@ class LeaderboardsListView(ListView):
     model = PlayerInventory
     template_name = 'accounts/leaderboards.html'
     context_object_name = 'list_of_players'
+
+    def get_queryset(self):
+        return PlayerInventory.objects.all().order_by('-total_clicks')[:5]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,8 +44,9 @@ def player_creation(request):
         instance.name = request.user
         print(request.user, '\n\n\n\n')
         instance.total_clicks = 0
-        instance.equipped_button_id = ClickButton.objects.get(btn_name='default').id
+        instance.equipped_button_id = ClickButtonSkin.objects.get(btn_name='default').id
         instance.equipped_background_id = Background.objects.get(bkg_name='default_bkg').id
+        instance.equipped_mltplr_id = ClickMultiplier.objects.get(mltplr_name='x1').id
         instance.save()
 
     return redirect('main_menu')
