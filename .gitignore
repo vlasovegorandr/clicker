@@ -3,3 +3,6 @@ game/__pycache__
 shop/__pycache__
 accounts/__pycache__
 clicker.db
+accounts/migrations
+shop/migrations
+game/migrations
